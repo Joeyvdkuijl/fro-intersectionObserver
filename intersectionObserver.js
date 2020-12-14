@@ -2,15 +2,14 @@ let Links = document.querySelectorAll('nav a');
 let secties = document.querySelectorAll('section');
 
 const opties = {
-    rootMargin: '-150px',
     treshold: 1.0
 };
 
 const verwerkDoorsnijden = (entries, observer) => {
     entries.forEach( entry => {
-        // console.log(entry.target.id + "doorsnijdt" + entry.isIntersecting);
+        console.log(entry.target.id + "doorsnijdt" + entry.isIntersecting);
         if( entry.isIntersecting ) {
-            let link = zoekLink('#' + entry.target.id);
+            let link = zoekLink('#' + entry.target.parentNode.id);
             maakActief(link);
         }
     });
@@ -21,7 +20,7 @@ let observer = new IntersectionObserver(verwerkDoorsnijden, opties);
 // observer.observe(secties[1]);
 
 secties.forEach( sectie => {
-    observer.observe(sectie);
+    observer.observe(sectie.getElementsByTagName('p')[0]);
 })
 
 const verwijderActief = () => {
