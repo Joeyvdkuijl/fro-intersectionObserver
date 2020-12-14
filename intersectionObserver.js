@@ -32,7 +32,7 @@ const verwijderActief = () => {
 }
 
 const maakActief = (elem) => {
-    werwijderActief();
+    verwijderActief();
     elem.classList.add('actief');
 }
 
