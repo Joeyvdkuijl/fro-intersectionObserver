@@ -5,8 +5,12 @@ const opties = {};
 
 const verwerkDoorsnijden = (entries, observer) => {
     entries.forEach( entry => {
-        console.log(entry.target + "doorsnijdt" + entry.isIntersecting);
-    })
+        // console.log(entry.target.id + "doorsnijdt" + entry.isIntersecting);
+        if( entry.isIntersecting ) {
+            let link = zoekLink('#' + entry.target.id);
+            maakActief(link);
+        }
+    });
 }
 
 let observer = new IntersectionObserver(verwerkDoorsnijden, opties);
@@ -32,4 +36,9 @@ Links.forEach( ( link ) => {
         maakActief(e.target);
         window.location = e.target.href;
     })
-} )
+});
+
+const zoekLink = (id) => {
+    let link = document.querySelector('nav a[href="' + id + '"]');
+    return link;
+}
