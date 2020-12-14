@@ -1,7 +1,10 @@
 let Links = document.querySelectorAll('nav a');
 let secties = document.querySelectorAll('section');
 
-const opties = {};
+const opties = {
+    rootMargin: '-150px',
+    treshold: 1.0
+};
 
 const verwerkDoorsnijden = (entries, observer) => {
     entries.forEach( entry => {
@@ -15,7 +18,11 @@ const verwerkDoorsnijden = (entries, observer) => {
 
 let observer = new IntersectionObserver(verwerkDoorsnijden, opties);
 
-observer.observe(secties[1]);
+// observer.observe(secties[1]);
+
+secties.forEach( sectie => {
+    observer.observe(sectie);
+})
 
 const verwijderActief = () => {
     Links.forEach( (link) => {
